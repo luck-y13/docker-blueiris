@@ -1,7 +1,8 @@
 ## docker-blueiris
 
-This is a Container for BlueIris based on [solarkennedy/wine-x11-novnc-docker
-](https://github.com/solarkennedy/wine-x11-novnc-docker)
+This is a Container for BlueIris based on [jshridha/docker-blueiris](https://github.com/jshridha/docker-blueiris)
+
+This also bumps the resolution up to 1920x1080 by default and limits the STDOUT logging.  This is a WIP as I learn more about WINE and blueiris.
 
 This container runs:
 
@@ -15,28 +16,21 @@ This container runs:
 ```
 docker run -d \
   --name="blueiris" \
-  --privileged \
   -p 8080:8080 \
   -p 5900:5900 \
   -p 81:81 \
-  -v /path/to/data:/root/prefix:rw \
+  -v /path/to/data:/root/prefix32:rw \
   --log-opt max-size=5m --log-opt max-file=2 \
-  jshridha/blueiris
+  leonowski/docker-blueiris
   ```
 
-* The "/path/to/data" can be a docker volume or a local path.  It's probably best to use a local path on your host so you can drop things in it if you need to.  Also included is cifs-utils so you can mount cifs from inside the container (note:  You will have to run the container privileged to be able to mount cifs)
-
-* Example docker run also has log output size limited.  This will help the container storage layer from getting out of control.
-
-* **NOTE:** The container must be run in privileged mode for the first run to allow installation of the Visual C++ components. The privileged flag can be removed after the first run.
+* The "/path/to/data" can be a docker volume or a local path.  It's probably best to use a local path on your host so you can drop things in it if you need to.  I also included cifs-utils so you can mount cifs from inside the container (note:  You will have to run the container privileged to be able to mount cifs)
 
 ## Advanced Options
 
 BlueIris version 5 is supported by default. If you'd like to run BlueIris 4, set the environmental variable:
 ```BLUEIRIS_VERISION=4```
 
-The default resolution is 1024x768x24. If you need to change the resolution set the environmental variable:
-`RESOLUTION=1920x1080x24` or `RESOLUTION=1440x768x24` etc
 
 # Known Issues:
 * Saving and restoring settings backup via the BlueIris interface does not work!
