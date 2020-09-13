@@ -41,8 +41,8 @@ RUN apt-get update && \
     cd /usr/bin/ && \
     wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
     chmod +x winetricks && \
-    winetricks win10 && \
-    winetricks -q corefonts wininet && \
+   # winetricks win10 && \
+   # winetricks -q corefonts wininet && \
     chmod +x /root/blueiris.sh /root/launch_blueiris.sh /root/check_process.sh /root/service.sh /root/get_latest_ui3.sh && \
     mkdir -p /usr/share/wine/mono /usr/share/wine/gecko && \
     mv /root/*gecko*.msi /usr/share/wine/gecko/ && mv /root/*mono*.msi /usr/share/wine/mono/ && \
@@ -58,7 +58,7 @@ RUN apt-get update && \
     mkdir /home/wineuser/prefix && \
     chown wineuser:wineuser /home/wineuser/prefix
 
-USER wineuser
+USER root
 ENV HOME /home/wineuser
 ENV WINEPREFIX /home/wineuser/prefix
 WORKDIR /home/wineuser
