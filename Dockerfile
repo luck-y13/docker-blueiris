@@ -53,7 +53,7 @@ RUN apt-get update && \
     ln -s /home/wineuser/novnc/vnc_lite.html /home/wineuser/novnc/index.html && \
     chown -R wineuser:wineuser /home/wineuser
 
-USER wineuser
+USER root
 ENV HOME /home/wineuser
 WORKDIR /home/wineuser
 
