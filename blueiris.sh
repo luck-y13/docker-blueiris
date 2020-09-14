@@ -21,12 +21,12 @@ if [ ! -e "$BLUEIRIS_EXE" ] ; then
     fi
     winetricks -q vcrun2019 mfc42
     wine "blueiris.exe"
-    rm blueiris.exe
+   # rm blueiris.exe
     if [ "$BLUEIRIS_VERSION" == "5" ]; then
        unzip -o "${BLUEIRIS_INSTALL_PATH}/ui3.zip" -d "${BLUEIRIS_INSTALL_PATH}/www/"
     fi
     wine reg import service.reg && sleep 5
-    kill 1
+    #kill 1
 fi
 unzip -o "${BLUEIRIS_INSTALL_PATH}/ui3.zip" -d "${BLUEIRIS_INSTALL_PATH}/www/"
 wine reg import service.reg && sleep 2 && wine net start blueiris && sleep 2
