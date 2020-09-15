@@ -25,7 +25,7 @@ ADD https://dl.winehq.org/wine/wine-mono/5.1.0/wine-mono-5.1.0-x86.msi /root/
 
 WORKDIR /root/
 RUN apt-get update && \
-    apt-get install -y wget gnupg software-properties-common winbind python python-numpy unzip jq curl && \
+    apt-get install -y wget gnupg software-properties-common winbind python python-numpy unzip jq curl vim sudo && \
     dpkg --add-architecture i386 && \
     wget -nc https://dl.winehq.org/wine-builds/winehq.key && \
     apt-key add winehq.key && \
@@ -41,7 +41,7 @@ RUN apt-get update && \
     cd /usr/bin/ && \
     wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
     chmod +x winetricks && \
-    chmod +x /root/blueiris.sh /root/launch_blueiris.sh /root/check_process.sh /root/service.sh /root/get_latest_ui3.sh && \
+    chmod +x /root/blueiris.sh /root/launch_blueiris.sh /root/winesetup.sh /root/get_latest_ui3.sh && \
     mkdir -p /usr/share/wine/mono /usr/share/wine/gecko && \
     mv /root/*gecko*.msi /usr/share/wine/gecko/ && mv /root/*mono*.msi /usr/share/wine/mono/ && \
     mkdir -p /root/.fluxbox && \
@@ -53,7 +53,7 @@ RUN apt-get update && \
     ln -s /home/wineuser/novnc/vnc_lite.html /home/wineuser/novnc/index.html && \
     chown -R wineuser:wineuser /home/wineuser
 
-USER root
+USER wineuser
 ENV HOME /home/wineuser
 WORKDIR /home/wineuser
 
