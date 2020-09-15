@@ -13,8 +13,7 @@ ENV RESOLUTION=1024x768x24
 ADD blueiris.sh /root/blueiris.sh
 ADD service.reg /root/service.reg
 ADD launch_blueiris.sh /root/launch_blueiris.sh
-ADD check_process.sh /root/check_process.sh
-ADD service.sh /root/service.sh
+ADD winesetup.sh /root/winesetup.sh
 ADD supervisord-normal.conf /etc/supervisor/conf.d/supervisord-normal.conf
 ADD supervisord-service.conf /etc/supervisor/conf.d/supervisord-service.conf
 ADD menu /root/menu
